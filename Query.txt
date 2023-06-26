@@ -1,0 +1,48 @@
+CREATE TABLE `db_siswa`.`tb_siswa` (`id` INT NOT NULL AUTO_INCREMENT , `nama` VARCHAR(100) NOT NULL , 
+`nim` VARCHAR(15) NOT NULL , `jurusan` VARCHAR(50) NOT NULL , 
+`domisili` VARCHAR(50) NOT NULL , 
+PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+INSERT INTO `tb_siswa` (`id`, `nama`, `nim`, `jurusan`, 
+`domisili`) 
+VALUES (NULL, 'Jhon', '1103154092', 'Teknik Komputer', 'Jakarta'), 
+(NULL, 'Kate', '1103154777', 'Teknik Informatika', 'Bogor')
+
+
+UPDATE `tb_siswa` SET `domisili` = 'Jakarta' WHERE `tb_siswa`.`id` = 3;
+
+
+SELECT * FROM `tb_siswa`;
+
+SELECT nim, jurusan FROM tb_siswa;
+
+SELECT * FROM `tb_siswa` WHERE nim = 1103154777;
+
+SELECT * FROM `tb_siswa` WHERE jurusan = "Teknik Komputer" AND domisili = "Jakarta"
+
+SELECT * FROM `tb_siswa` WHERE jurusan = "Teknik Komputer" OR jurusan = "Teknik Elektro"
+
+SELECT * FROM `tb_siswa` WHERE (jurusan = "Teknik Komputer" OR jurusan = "Teknik Elektro") AND domisili = "Jakarta";
+
+SELECT * FROM `tb_siswa` WHERE NOT jurusan = "Teknik Informatika";
+
+SELECT * FROM `tb_siswa` WHERE jurusan LIKE "%teknik komputer%";
+
+SELECT * FROM `tb_siswa` WHERE jurusan LIKE "%komputer%";
+
+SELECT tb_siswa.nama, tb_siswa.nim, tb_jurusan.jurusan, tb_jurusan.dosen_wali 
+FROM tb_siswa
+INNER JOIN tb_jurusan
+ON tb_siswa.jurusan = tb_jurusan.jurusan;
+
+
+SELECT tb_siswa.*, tb_jurusan.* 
+FROM tb_siswa
+INNER JOIN tb_jurusan
+ON tb_siswa.jurusan = tb_jurusan.jurusan;
+
+SELECT tb_siswa.*, tb_jurusan.* 
+FROM tb_siswa
+INNER JOIN tb_jurusan
+ON tb_siswa.jurusan = tb_jurusan.jurusan 
+WHERE tb_siswa.jurusan = "Teknik Komputer"
